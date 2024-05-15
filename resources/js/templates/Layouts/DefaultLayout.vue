@@ -5,7 +5,7 @@ import { Link } from '@inertiajs/vue3';
 <template>
 	<header>
 		<section>
-			<h1><a href="/">Home</a></h1>
+			<h1><Link :href="route('home')">WeShort</Link></h1>
 			<nav>
 				<ul>
 					<li><Link href="#">Shorten</Link></li>
