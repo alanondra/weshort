@@ -2,7 +2,8 @@
 
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
-use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Foundation\Configuration\Middleware as MiddlewareConfig;
+use App\Http\Middleware;
 
 return Application::configure(basePath: dirname(__DIR__))
 	->withRouting(
@@ -10,8 +11,10 @@ return Application::configure(basePath: dirname(__DIR__))
 		commands: __DIR__.'/../routes/console.php',
 		health: '/up',
 	)
-	->withMiddleware(function (Middleware $middleware) {
-		//
+	->withMiddleware(function (MiddlewareConfig $middleware) {
+		$middleware->web(append: [
+			Middleware\HandleInertiaRequests::class,
+		]);
 	})
 	->withExceptions(function (Exceptions $exceptions) {
 		//
