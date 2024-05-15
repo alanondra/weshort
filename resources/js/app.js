@@ -6,7 +6,7 @@ import { ZiggyVue } from 'ziggy-js';
 import { Ziggy } from './vendor/ziggy';
 import DefaultLayout from './templates/Layouts/DefaultLayout.vue';
 
-const appName = window.config.app.name || 'App';
+const appName = window.config.app.name || 'WeShort';
 
 createInertiaApp({
 	title: title => `${title} - ${appName}`,
