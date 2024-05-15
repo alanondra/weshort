@@ -14,7 +14,7 @@ indent_style = tab
 [*.{html,xml}]
 indent_style = tab
 
-[*.{js,vue,vuex}]
+[*.{js,json,vue,vuex}]
 indent_style = tab
 
 [*.{php,phtml}]

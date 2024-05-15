@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<ruleset
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="vendor/squizlabs/php_codesniffer/phpcs.xsd"
+	name="WeShort Rules"
+>
+	<description>PSR-12 with Tab Indentation</description>
+
+	<file>app</file>
+	<file>config</file>
+	<file>database</file>
+	<file>resources/views</file>
+	<file>routes</file>
+	<file>tests</file>
+
+	<exclude-pattern>*.blade.php</exclude-pattern>
+
+	<rule ref="PSR12">
+		<exclude name="Generic.WhiteSpace.DisallowTabIndent"/>
+		<properties>
+			<property name="tab-width" value="4"/>
+		</properties>
+	</rule>
+
+	<rule ref="Generic.Files.LineEndings">
+		<properties>
+			<property name="eolChar" value="\n"/>
+		</properties>
+	</rule>
+
+	<rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps">
+		<exclude-pattern>tests/</exclude-pattern>
+	</rule>
+</ruleset>
