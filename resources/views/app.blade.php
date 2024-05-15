@@ -6,6 +6,13 @@
 		@vite('resources/js/app.js')
 		@routes
 		@inertiaHead
+		<script type="application/x-javascript">
+			window.config = {
+				app: {
+					name: "{{ config('app.name') }}"
+				}
+			};
+		</script>
 	</head>
 	<body>
 		@inertia
