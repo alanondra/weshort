@@ -1,5 +1,6 @@
 import path from 'path';
 import { defineConfig } from 'vite';
+import { run } from 'vite-plugin-run';
 import laravel from 'laravel-vite-plugin';
 import vue from '@vitejs/plugin-vue';
 
@@ -13,6 +14,13 @@ export default defineConfig({
 			refresh: true,
 		}),
 		vue(),
+		run([
+			{
+				name: 'ziggy',
+				run: ['php', 'artisan', 'ziggy:generate', 'resources/js/vendor/ziggy.js'],
+				condition: (file) => file.includes('/routes/') && file.endsWith('.php')
+			}
+		])
 	],
 	resolve: {
 		alias: {

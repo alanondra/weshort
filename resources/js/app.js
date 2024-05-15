@@ -3,7 +3,7 @@ import './bootstrap';
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { ZiggyVue } from 'ziggy-js';
-import { Ziggy } from './ziggy';
+import { Ziggy } from './vendor/ziggy';
 import DefaultLayout from './templates/Layouts/DefaultLayout.vue';
 
 createInertiaApp({
