@@ -1,1 +1,15 @@
 @use './vendor';
+
+html, body {
+	display: flex;
+	margin: 0;
+	padding: 0;
+}
+html {
+	flex-flow: row nowrap;
+	min-height: 100%;
+}
+body {
+	flex-flow: column nowrap;
+	flex-grow: 1;
+}
