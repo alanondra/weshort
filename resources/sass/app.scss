@@ -1,5 +1,7 @@
 @use './vendor';
-
+* {
+	box-sizing: border-box;
+}
 html, body {
 	display: flex;
 	margin: 0;
@@ -12,4 +14,8 @@ html {
 body {
 	flex-flow: column nowrap;
 	flex-grow: 1;
+}
+header, footer, main, section, article, menu {
+	margin: 0;
+	padding: 0;
 }

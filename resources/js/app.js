@@ -4,7 +4,7 @@ import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 import { ZiggyVue } from 'ziggy-js';
 import { Ziggy } from './vendor/ziggy';
-import DefaultLayout from './templates/Layouts/DefaultLayout.vue';
+import DefaultLayout from './templates/Layouts/Default.vue';
 
 const appName = window.config.app.name || 'WeShort';
 
