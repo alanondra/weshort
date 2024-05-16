@@ -63,6 +63,9 @@ class ShortLinkController extends AbstractController
 	 */
 	public function show(ShortLink $shortLink): Responsable
 	{
+		/**
+		 * @todo remove in favor of separate AJAX call for front-end
+		 */
 		$shortLink->loadMissing(['visits']);
 
 		$data = [
