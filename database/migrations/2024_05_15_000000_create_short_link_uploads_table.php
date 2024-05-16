@@ -16,7 +16,6 @@ return new class extends Migration
 			$table->timestamps();
 			$table->softDeletes();
 			$table->string('filename');
-			$table->string('disk');
 			$table->string('path');
 			$table->string('type');
 			$table->unsignedInteger('size');

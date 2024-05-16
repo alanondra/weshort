@@ -13,7 +13,6 @@ use App\Events\ShortLinkUploads as Events;
  * @property  \Illuminate\Support\Carbon  $updated_at
  * @property  \Illuminate\Support\Carbon  $deleted_at
  * @property  string  $filename
- * @property  string  $disk
  * @property  string  $path
  * @property  string  $type
  * @property  int  $size
@@ -40,9 +39,9 @@ class ShortLinkUpload extends AbstractModel
 	 * @var array<string>
 	 */
 	protected $hidden = [
-		self::CREATED_AT,
 		self::UPDATED_AT,
 		'deleted_at',
+		'path',
 	];
 
 	/**
