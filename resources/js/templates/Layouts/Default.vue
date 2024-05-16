@@ -18,9 +18,6 @@ const appName = ref(window.config.app.name || 'WeShort');
 						<li class="nav-item">
 							<Link class="nav-link" :href="route('shortLinks.index')">ShortLinks</Link>
 						</li>
-						<li class="nav-item">
-							<Link class="nav-link" :href="route('uploads.index')">Uploads</Link>
-						</li>
 					</ul>
 				</div>
 			</div>
