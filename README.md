@@ -32,7 +32,7 @@
 6. Open a terminal to the project root and run `docker compose up`
 7. Navigate to the MinIO web portal in your browser and log in with
     the `MINIO_ROOT_USER` and `MINIO_ROOT_PASSWORD` you set up.
-8. Create a bucket named as per `AWS_BUCKET`
+8. Create a bucket named as per `AWS_BUCKET` with Public permissions
 9. Under Configuration, then Region, set the Server Location to the value of `AWS_DEFAULT_REGION`
 10. Under Access Keys, click "Create access key"
 11. Copy the ones generated, or set them to the existing pair, and click Create
