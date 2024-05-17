@@ -26,13 +26,19 @@
     - `FORWARD_DB_PORT` - **MariaDB port**
     - `FORWARD_REDIS_PORT` - **Redis port**
     - `FORWARD_MINIO_PORT` - **MinIO port**
-    - `FORWARD_MINIO_CONSOLE_PORT` - **MinIO terminal access port**
+    - `FORWARD_MINIO_CONSOLE_PORT` - **MinIO web portal port**
 
 5. Adjust any usernames and passwords in the file to your liking
 6. Open a terminal to the project root and run `docker compose up`
-7. Open another one and to access the app container with `docker exec -it ao.weshort.app /bin/sh`
-8. Install the PHP packages using `composer install`
-    - This will also give your host  access to the Sail binaries
-9. Run the database migrations with `./vendor/bin/sail artisan migrate`
-10. Run the Vite server using `./vendor/bin/sail npm run dev`
-11. Open a browswer window to the hostname and `APP_PORT` given in `.env`
+7. Navigate to the MinIO web portal in your browser and log in with
+    the `MINIO_ROOT_USER` and `MINIO_ROOT_PASSWORD` you set up.
+8. Create a bucket named as per `AWS_BUCKET`
+9. Under Configuration, then Region, set the Server Location to the value of `AWS_DEFAULT_REGION`
+10. Under Access Keys, click "Create access key"
+11. Copy the ones generated, or set them to the existing pair, and click Create
+12. Open another one and to access the app container with `docker exec -it ao.weshort.app /bin/sh`
+13. Install the PHP packages using `composer install`
+14. Terminate the server and restart with `./vendor/bin/sail up`
+15. Run the database migrations with `./vendor/bin/sail artisan migrate`
+16. Run the Vite server using `./vendor/bin/sail npm run dev`
+17. Open a browswer window to the hostname and `APP_PORT` given in `.env`
