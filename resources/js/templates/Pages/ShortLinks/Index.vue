@@ -1,11 +1,17 @@
 <script setup>
-import { Head, Link } from '@inertiajs/vue3';
+	import { ref, watch, onMounted } from 'vue';
+	import { Head, Link } from '@inertiajs/vue3';
+	import moment from 'moment';
 
-defineProps({
-	shortLinks: {
-		type: Object
-	}
-});
+	defineProps({
+		shortLinks: {
+			type: Object
+		}
+	});
+
+	const formatDate = (date) => {
+		return moment(date).format('LLLL');
+	};
 </script>
 
 <template>
@@ -19,19 +25,28 @@ defineProps({
 				You should <Link :href="route('home')" class="alert-link">create some</Link> to start tracking.
 			</div>
 		</div>
-		<ul v-if="shortLinks.data.length != 0" class="list-group">
-			<li :key="index" v-for="(shortLink, index) in shortLinks.data" class="list-group-item d-flex justify-content-between align-items-center">
-				<dl class="row mb-0">
-					<dt class="col">Shortened</dt>
-					<dd class="col mb-0"><Link :href="shortLink.short_url">{{ shortLink.short_url }}</Link></dd>
-					<dt class="col">Original</dt>
-					<dd class="col mb-0"><Link :href="shortLink.url">{{ shortLink.url }}</Link></dd>
-				</dl>
-				<menu class="btn-group">
-					<Link :href="route('shortLinks.show', {shortLink})" class="btn btn-primary" title="View Traffic"><i class="fa-solid fa-magnifying-glass-chart"></i></Link>
-					<Link :href="route('shortLinks.show', {shortLink})" class="btn btn-danger" title="Delete"><i class="fa-solid fa-trash"></i></Link>
-				</menu>
-			</li>
-		</ul>
+		<table v-if="shortLinks.data.length != 0" class="table">
+			<thead>
+				<tr>
+					<th scope="col">Shortened URL</th>
+					<th scope="col">Original URL</th>
+					<th scope="col">Created On</th>
+					<th scope="col">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr :key="index" v-for="(shortLink, index) in shortLinks.data">
+					<td><Link :href="shortLink.short_url">{{ shortLink.short_url }}</Link></td>
+					<td><Link :href="shortLink.url">{{ shortLink.url }}</Link></td>
+					<td>{{ formatDate(shortLink.created_at) }}</td>
+					<td>
+						<menu class="btn-group">
+							<Link :href="route('shortLinks.show', {shortLink})" class="btn btn-primary" title="View Traffic"><i class="fa-solid fa-magnifying-glass-chart"></i></Link>
+							<Link :href="route('shortLinks.destroy', {shortLink})" class="btn btn-danger" title="Delete"><i class="fa-solid fa-trash"></i></Link>
+						</menu>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 	</section>
 </template>

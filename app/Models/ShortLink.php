@@ -46,7 +46,6 @@ class ShortLink extends AbstractModel
 	 * @var array<string>
 	 */
 	protected $hidden = [
-		self::CREATED_AT,
 		self::UPDATED_AT,
 		'deleted_at',
 		'deleted_ts',

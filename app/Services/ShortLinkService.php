@@ -2,39 +2,25 @@
 
 namespace App\Services;
 
-use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use App\DataViews\ShortLinkDataView;
 use App\Models\ShortLink;
 
 class ShortLinkService
 {
-	/**
-	 * Get the list of ShortLinks.
-	 *
-	 * @param  int  $page
-	 * @param  int  $count
-	 *
-	 * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator<\App\Models\ShortLink>
-	 */
-	public function getList(
-		int $page = 1,
-		int $count = 10
-	): LengthAwarePaginator {
-		$query = ShortLink::query();
-
-		return $query->paginate(
-			page: max(1, $page),
-			perPage: max(1, $count)
-		);
+	public function __construct(public readonly ShortLinkDataView $dataView)
+	{
+		//
 	}
 
 	/**
 	 * Create an instance of a ShortLink.
 	 *
 	 * @param  string  $url
+	 * @param  bool  $save
 	 *
 	 * @return \App\Models\ShortLink
 	 */
-	public function create(string $url): ShortLink
+	public function create(string $url, bool $save = true): ShortLink
 	{
 		$shortLink = new ShortLink();
 		$shortLink->url = $url;

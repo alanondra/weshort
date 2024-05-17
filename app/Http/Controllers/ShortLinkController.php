@@ -20,8 +20,8 @@ class ShortLinkController extends AbstractController
 	 */
 	public function index(Requests\IndexRequest $request): Responsable
 	{
-		$shortLinks = $this->shortLinks
-			->getList(
+		$shortLinks = $this->shortLinks->dataView
+			->paginate(
 				page: $request->getPage(),
 				count: $request->getCount()
 			);
