@@ -42,7 +42,7 @@
 					<td>
 						<menu class="btn-group">
 							<Link :href="route('shortLinks.show', {shortLink})" class="btn btn-primary" title="View Traffic"><i class="fa-solid fa-magnifying-glass-chart"></i></Link>
-							<Link :href="route('shortLinks.destroy', {shortLink})" class="btn btn-danger" title="Delete"><i class="fa-solid fa-trash"></i></Link>
+							<!-- <Link :href="route('shortLinks.destroy', {shortLink})" class="btn btn-danger" title="Delete"><i class="fa-solid fa-trash"></i></Link> -->
 						</menu>
 					</td>
 				</tr>
