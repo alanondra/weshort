@@ -9,8 +9,9 @@ use App\Exceptions\UserException;
 use App\Services\ShortLinkUploads\Contracts\ProcessorInterface;
 use App\Services\ShortLinkService;
 use App\Models\ShortLinkUpload;
+use League\Csv\Reader;
 
-class PlainTextProcessor implements ProcessorInterface
+class CsvProcessor implements ProcessorInterface
 {
 	public function __construct(
 		protected Filesystem $filesystem,
@@ -28,7 +29,7 @@ class PlainTextProcessor implements ProcessorInterface
 	 */
 	public function canProcess(ShortLinkUpload $upload): bool
 	{
-		return strtolower($upload->type) == 'text/plain';
+		return strtolower($upload->type) == 'text/csv';
 	}
 
 	/**
@@ -50,8 +51,18 @@ class PlainTextProcessor implements ProcessorInterface
 				throw new RuntimeException(sprintf('Failed to open handle to file %s', $upload->path));
 			}
 
-			while (($line = fgets($handle)) !== false) {
-				$trimmed = try_trim($line);
+			$reader = Reader::createFromStream($handle);
+
+			$reader->setHeaderOffset(0);
+
+			$column = array_search('url', array_map('strtolower', $reader->getHeader()));
+
+			if (empty($column)) {
+				throw new RuntimeException('Missing column "URL"');
+			}
+
+			foreach ($reader->fetchColumn($column) as $cell) {
+				$trimmed = try_trim($cell);
 
 				if (empty($trimmed)) {
 					continue;
@@ -76,7 +87,7 @@ class PlainTextProcessor implements ProcessorInterface
 		}
 
 		if (empty($shortLinks)) {
-			throw new UserException('Sorry, no URLs could be found. Please try again with a different file.');
+			throw new UserException('Sorry, no URLs could be found. Please try again with a column labeled "URL" (any case).');
 		}
 
 		return $shortLinks;
