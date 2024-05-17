@@ -57,7 +57,7 @@ class CsvProcessor implements ProcessorInterface
 
 			$column = array_search('url', array_map('strtolower', $reader->getHeader()));
 
-			if (empty($column)) {
+			if ($column === false) {
 				throw new RuntimeException('Missing column "URL"');
 			}
 

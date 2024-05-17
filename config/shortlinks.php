@@ -17,6 +17,7 @@ return [
 		 * @see \App\Services\ShortLinkUploads\Contracts\ProcessorInterface
 		 */
 		'processors' => [
+			Processors\CsvProcessor::class,
 			Processors\PlainTextProcessor::class,
 		],
 
