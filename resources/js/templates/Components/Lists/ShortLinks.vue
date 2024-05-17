@@ -1,12 +1,12 @@
-
 <script setup>
 	import { ref, watch, onMounted } from 'vue';
+	import { Head, Link } from '@inertiajs/vue3';
 	import axios from 'axios';
 	import moment from 'moment';
 	import { range, debounce } from 'lodash-es';
 
 	const props = defineProps({
-		shortLink: {
+		upload: {
 			type: Object,
 			required: true
 		}
@@ -34,10 +34,9 @@
 		const query = new URLSearchParams({ page, count }).toString();
 
 		try {
-			const response = await axios.get(route('api.shortlinks.visits.index', { shortLink: props.shortLink }) + `?${query}`);
+			const response = await axios.get(route('api.uploads.shortLinks.index', { upload: props.upload }) + `?${query}`);
 			if (response.status >= 200 && response.status < 300) {
 				const payload = response.data;
-				console.log(payload);
 
 				pages.value = payload.last_page;
 				total.value = payload.total;
@@ -94,22 +93,27 @@
 <template>
 	<div class="card">
 		<div class="card-body">
-			<h3 class="card-title">Traffic</h3>
+			<h3 class="card-title">ShortLinks</h3>
 			<table class="table">
 				<thead>
 					<tr>
+						<th scope="col">Shortened URL</th>
+						<th scope="col">Original URL</th>
 						<th scope="col">Created On</th>
-						<th scope="col">IP Address</th>
-						<th scope="col">Device Type</th>
-						<th scope="col">Platform</th>
+						<th scope="col">Actions</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr v-for="(item, index) in items" :key="index">
+						<td><Link :href="item.short_url">{{ item.short_url }}</Link></td>
+						<td><Link :href="item.url">{{ item.url }}</Link></td>
 						<td>{{ formatDate(item.created_at) }}</td>
-						<td>{{ item.ip_address }}</td>
-						<td>{{ item.device_type }}</td>
-						<td>{{ item.platform }}</td>
+						<td>
+							<menu class="btn-group">
+								<Link :href="route('shortLinks.show', {shortLink: item})" class="btn btn-primary" title="View Traffic"><i class="fa-solid fa-magnifying-glass-chart"></i></Link>
+								<Link :href="route('shortLinks.destroy', {shortLink: item})" class="btn btn-danger" title="Delete"><i class="fa-solid fa-trash"></i></Link>
+							</menu>
+						</td>
 					</tr>
 				</tbody>
 			</table>

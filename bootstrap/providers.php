@@ -5,6 +5,7 @@ return [
 	App\Providers\AppServiceProvider::class,
 	App\Providers\EventServiceProvider::class,
 	App\Providers\DataViewServiceProvider::class,
+	App\Providers\ShortLinkServiceProvider::class,
 
 	// Vendor Providers
 	App\Providers\BrowscapServiceProvider::class,

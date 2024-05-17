@@ -48,5 +48,24 @@
 				</tr>
 			</tbody>
 		</table>
+		<!-- <nav v-if="pages > 1">
+			<ul class="pagination">
+				<li class="page-item" :class="{ active: page === 1 }">
+					<a href="#" class="page-link" @click.prevent="goToPage(1)">1</a>
+				</li>
+				<li v-if="pageRange.length > 0 && pageRange[0] > 2" class="page-item">
+					<a href="#" class="page-link" @click.prevent="prevPage()">...</a>
+				</li>
+				<li v-for="p in pageRange" :key="p" class="page-item" :class="{ active: page === p }">
+					<a href="#" class="page-link" @click.prevent="goToPage(p)">{{ p }}</a>
+				</li>
+				<li v-if="pageRange.length > 0 && pageRange[pageRange.length - 1] < pages - 1" class="page-item">
+					<a href="#" class="page-link" @click.prevent="nextPage()">...</a>
+				</li>
+				<li class="page-item" :class="{ active: page === pages }">
+					<a href="#" class="page-link" @click.prevent="goToPage(pages)">{{ pages }}</a>
+				</li>
+			</ul>
+		</nav> -->
 	</section>
 </template>

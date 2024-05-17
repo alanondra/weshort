@@ -17,7 +17,7 @@ use App\Events\ShortLinkUploads as Events;
  * @property  string  $type
  * @property  int  $size
  *
- * @property  \Illuminate\Database\Eloquent\Collection<\App\Models\ShortLinkVisit>  $visits
+ * @property  \Illuminate\Database\Eloquent\Collection<\App\Models\ShortLinks>  $shortLinks
  */
 class ShortLinkUpload extends AbstractModel
 {
@@ -51,6 +51,6 @@ class ShortLinkUpload extends AbstractModel
 	 */
 	public function shortLinks(): Relations\HasMany
 	{
-		return $this->hasMany(ShortLink::class);
+		return $this->hasMany(ShortLink::class, 'short_link_upload_id');
 	}
 }
